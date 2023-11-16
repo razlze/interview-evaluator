@@ -1,13 +1,13 @@
-'use client'
+'use client';
 
-import * as React from 'react';
-import { Theme, useTheme } from '@mui/material/styles';
+import { useState, useContext } from 'react';
+import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import Chip from '@mui/material/Chip';
 
 const ITEM_HEIGHT = 48;
@@ -21,9 +21,9 @@ const MenuProps = {
   },
 };
 
-const jobTypes = ["Internship", "Part-time", "Full-time"];
+const jobTypes = ['Internship', 'Part-time', 'Full-time'];
 
-function getStyles(job: string, jobType: readonly string[], theme: Theme) {
+function getStyles(job, jobType, theme) {
   return {
     fontWeight:
       jobType.indexOf(job) === -1
@@ -32,31 +32,29 @@ function getStyles(job: string, jobType: readonly string[], theme: Theme) {
   };
 }
 
-export default function MultipleSelectChip() {
+export default function MultipleSelectChip({ jobType, setJobType }) {
   const theme = useTheme();
-  const [jobType, setJobType] = React.useState<string[]>([]);
 
-  const handleChange = (event: SelectChangeEvent<typeof jobType>) => {
+  const handleChange = (event) => {
     const {
       target: { value },
     } = event;
     setJobType(
       // On autofill we get a stringified value.
-      typeof value === 'string' ? value.split(',') : value,
+      typeof value === 'string' ? value.split(',') : value
     );
   };
 
   return (
     <div>
-      <FormControl margin="normal" sx={{ width: "45%" }}>
-        <InputLabel id="demo-multiple-chip-label">Required *</InputLabel>
+      <FormControl margin='normal' sx={{ width: '45%' }}>
         <Select
-          labelId="demo-multiple-chip-label"
-          id="demo-multiple-chip"
+          labelId='demo-multiple-chip-label'
+          id='demo-multiple-chip'
           multiple
           value={jobType}
           onChange={handleChange}
-          input={<OutlinedInput id="select-multiple-chip" label="Required *" />}
+          input={<OutlinedInput id='select-multiple-chip' />}
           renderValue={(selected) => (
             <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
               {selected.map((value) => (
@@ -65,8 +63,7 @@ export default function MultipleSelectChip() {
             </Box>
           )}
           MenuProps={MenuProps}
-          margin="dense"
-          required
+          margin='dense'
         >
           {jobTypes.map((job) => (
             <MenuItem
