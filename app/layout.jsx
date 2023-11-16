@@ -1,10 +1,7 @@
-import { Inter } from 'next/font/google';
 import Container from '@mui/material/Container';
 import './globals.css';
 import JobProvider from './providers/JobProvider';
 import QuestionProvider from './providers/QuestionProvider';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,7 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body suppressHydrationWarning={true}>
         <JobProvider>
           <QuestionProvider>
             <Container maxWidth='md'>{children}</Container>
