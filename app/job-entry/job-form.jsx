@@ -7,9 +7,23 @@ import { JobContext } from '../providers/JobProvider';
 
 export default function JobForm() {
   const [jobInfo, setJobInfo] = useContext(JobContext);
-  const [title, setJobTitle] = useState(jobInfo.title);
+  const [title, setTitle] = useState(jobInfo.title);
+  const [company, setCompany] = useState(jobInfo.company);
+  const [reqs, setReqs] = useState(jobInfo.reqs);
+  const [type, setType] = useState(jobInfo.type);
+
+  const handleNext = (e) => {
+    e.preventDefault();
+    setJobInfo({
+      title: title,
+      type: type,
+      company: company,
+      reqs: reqs,
+    });
+  };
+
   return (
-    <Box component='form'>
+    <Box component='form' onSubmit={handleNext}>
       <InputLabel htmlFor='job-title-input'>Job Title</InputLabel>
       <TextField
         required
@@ -17,17 +31,25 @@ export default function JobForm() {
         label='Required'
         fullWidth
         margin='normal'
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
       />
 
       <InputLabel htmlFor='job-type-input' sx={{ marginTop: '1rem' }}>
         Job Type
       </InputLabel>
-      <MultipleSelectChip />
+      <MultipleSelectChip jobType={type} setJobType={setType} />
 
       <InputLabel htmlFor='job-title-input' sx={{ marginTop: '1rem' }}>
         Company
       </InputLabel>
-      <TextField id='job-company-input' fullWidth margin='normal' />
+      <TextField
+        id='job-company-input'
+        fullWidth
+        margin='normal'
+        value={company}
+        onChange={(e) => setCompany(e.target.value)}
+      />
 
       <InputLabel htmlFor='job-title-input' sx={{ marginTop: '1rem' }}>
         Job Requirements
@@ -38,6 +60,8 @@ export default function JobForm() {
         margin='normal'
         multiline
         minRows={5}
+        value={reqs}
+        onChange={(e) => setReqs(e.target.value)}
       />
       <Button variant='contained' sx={{ marginTop: '1rem' }} type='submit'>
         Next

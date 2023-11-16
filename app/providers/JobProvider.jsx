@@ -6,8 +6,8 @@ export const JobContext = createContext([{}, () => {}]);
 
 export default function JobProvider({ children }) {
   const [jobInfo, useJobInfo] = useState({
-    title: 'hello',
-    type: '',
+    title: '',
+    type: [],
     company: '',
     reqs: '',
   });
