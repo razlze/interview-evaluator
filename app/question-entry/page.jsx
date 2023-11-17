@@ -1,6 +1,13 @@
-export default async function Page() {
+import { Typography, Box } from '@mui/material';
+import QuestionForm from './question-form';
 
+export default async function Page() {
   return (
-    <h1>Edit Questions</h1>
-  )
+    <Box sx={{ marginTop: '3rem' }}>
+      <Typography variant='h3' sx={{ textAlign: 'center' }}>
+        Edit Questions
+      </Typography>
+      <QuestionForm></QuestionForm>
+    </Box>
+  );
 }
