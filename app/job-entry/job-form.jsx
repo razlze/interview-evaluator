@@ -4,6 +4,7 @@ import { Box, TextField, InputLabel, Button } from '@mui/material';
 import MultipleSelectChip from './components/multiselect';
 import { useContext, useState } from 'react';
 import { JobContext } from '../providers/JobProvider';
+import { useRouter } from 'next/navigation';
 
 export default function JobForm() {
   const [jobInfo, setJobInfo] = useContext(JobContext);
@@ -11,6 +12,7 @@ export default function JobForm() {
   const [company, setCompany] = useState(jobInfo.company);
   const [reqs, setReqs] = useState(jobInfo.reqs);
   const [type, setType] = useState(jobInfo.type);
+  const router = useRouter();
 
   const handleNext = (e) => {
     e.preventDefault();
@@ -20,6 +22,7 @@ export default function JobForm() {
       company: company,
       reqs: reqs,
     });
+    router.push('/question-entry');
   };
 
   return (
