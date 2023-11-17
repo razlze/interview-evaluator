@@ -1,6 +1,13 @@
-export default async function Page() {
+import { Typography, Box } from '@mui/material';
+import WebCamera from './webcam';
 
+export default async function Page() {
   return (
-    <h1>Interview</h1>
-  )
+    <Box sx={{ marginTop: '3rem' }}>
+      <Typography variant='h3' sx={{ textAlign: 'center' }}>
+        Interview
+      </Typography>
+      <WebCamera />
+    </Box>
+  );
 }
