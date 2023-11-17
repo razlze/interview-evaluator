@@ -19,7 +19,10 @@ export default function QuestionForm() {
 
   const addQuestion = (e) => {
     if (e.key === 'Enter') {
-      setQuestionList([...questionList, e.target.value]);
+      setQuestionList([
+        ...questionList,
+        { question: e.target.value, answer: '' },
+      ]);
       e.target.value = '';
       e.preventDefault();
     }
@@ -39,7 +42,7 @@ export default function QuestionForm() {
     <Box component='form' sx={{ paddingTop: '20px' }} onSubmit={handleNext}>
       {questionList.map((q, index) => (
         <Card key={index} sx={{ marginBottom: '10px' }}>
-          <CardContent>{q}</CardContent>
+          <CardContent>{q.question}</CardContent>
           <CardActions>
             <Button id={index} size='small' onClick={deleteQuestion}>
               Delete
