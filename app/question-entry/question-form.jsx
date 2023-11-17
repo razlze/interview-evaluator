@@ -10,10 +10,12 @@ import {
 } from '@mui/material';
 import { useContext, useState } from 'react';
 import { QuestionContext } from '../providers/QuestionProvider';
+import { useRouter } from 'next/navigation';
 
 export default function QuestionForm() {
   const [questions, setQuestions] = useContext(QuestionContext);
   const [questionList, setQuestionList] = useState(questions);
+  const router = useRouter();
 
   const addQuestion = (e) => {
     if (e.key === 'Enter') {
@@ -30,6 +32,7 @@ export default function QuestionForm() {
   const handleNext = (e) => {
     e.preventDefault();
     setQuestions(questionList);
+    router.push('/setup-overview');
   };
 
   return (
