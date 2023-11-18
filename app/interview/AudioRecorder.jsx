@@ -12,8 +12,6 @@ export default function AudioRecording() {
       body: blob,
     });
 
-    console.log(blob);
-
     const result = await res.json().then((res) => console.log(res.answer));
   };
 
@@ -42,7 +40,6 @@ export default function AudioRecording() {
   useEffect(() => {
     if (!recordingBlob) return;
     parseAudio(recordingBlob);
-    console.log(recordingBlob);
   }, [recordingBlob]);
 
   return (

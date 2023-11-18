@@ -15,7 +15,5 @@ export async function POST(request) {
 
   const answer = transcription.text;
 
-  console.log(answer);
-
   return NextResponse.json({ answer });
 }
