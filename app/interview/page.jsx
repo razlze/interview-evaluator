@@ -4,7 +4,6 @@ import AudioRecording from './AudioRecorder';
 
 export default async function Page() {
   return (
-    // <Box sx={{ marginTop: '3rem', display: 'flex', direction: 'column' }}>
     <Stack alignItems='center' sx={{ marginTop: '3rem' }}>
       <Typography variant='h3' sx={{ textAlign: 'center' }}>
         Interview
@@ -12,6 +11,5 @@ export default async function Page() {
       <WebCamera />
       <AudioRecording />
     </Stack>
-    // </Box>
   );
 }
