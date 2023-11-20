@@ -1,4 +1,4 @@
-import { Typography, Box, Stack } from '@mui/material';
+import { Typography, Stack } from '@mui/material';
 import WebCamera from './webcam';
 import AudioRecording from './AudioRecorder';
 
