@@ -1,6 +1,5 @@
 import { Typography, Stack } from '@mui/material';
-import WebCamera from './webcam';
-import AudioRecording from './AudioRecorder';
+import Interview from './Interview';
 
 export default async function Page() {
   return (
@@ -8,8 +7,7 @@ export default async function Page() {
       <Typography variant='h3' sx={{ textAlign: 'center' }}>
         Interview
       </Typography>
-      <WebCamera />
-      <AudioRecording />
+      <Interview />
     </Stack>
   );
 }
