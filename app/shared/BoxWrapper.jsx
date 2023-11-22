@@ -1,0 +1,47 @@
+import { Typography, Box, Paper } from '@mui/material';
+import Image from 'next/image';
+
+export default async function BoxWrapper({ title, imageSrc, children }) {
+  return (
+    <Paper
+      sx={{
+        p: 9,
+        display: 'flex',
+        position: 'relative',
+        flexDirection: 'column',
+        alignItems: 'center',
+        borderRadius: '1rem',
+      }}
+      elevation={8}
+    >
+      <Box
+        position='absolute'
+        display='flex'
+        justifyContent='center'
+        alignItems='center'
+        borderRadius='50%'
+        height='6rem'
+        width='6rem'
+        bgcolor='primary.main'
+        top='-3rem'
+      >
+        <Image
+          src={imageSrc}
+          width={60}
+          height={60}
+          alt='Picture of the author'
+        />
+      </Box>
+      <Typography variant='h1'>{title}</Typography>
+      <Box
+        height={5}
+        mb={4}
+        mt={1}
+        width='6rem'
+        bgcolor='primary.main'
+        borderRadius={1}
+      />
+      {children}
+    </Paper>
+  );
+}

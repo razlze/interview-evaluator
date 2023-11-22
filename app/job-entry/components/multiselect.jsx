@@ -1,6 +1,5 @@
 'use client';
 
-import { useState, useContext } from 'react';
 import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -46,36 +45,35 @@ export default function MultipleSelectChip({ jobType, setJobType }) {
   };
 
   return (
-    <div>
-      <FormControl margin='normal' sx={{ width: '45%' }}>
-        <Select
-          labelId='demo-multiple-chip-label'
-          id='demo-multiple-chip'
-          multiple
-          value={jobType}
-          onChange={handleChange}
-          input={<OutlinedInput id='select-multiple-chip' />}
-          renderValue={(selected) => (
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-              {selected.map((value) => (
-                <Chip key={value} label={value} />
-              ))}
-            </Box>
-          )}
-          MenuProps={MenuProps}
-          margin='dense'
-        >
-          {jobTypes.map((job) => (
-            <MenuItem
-              key={job}
-              value={job}
-              style={getStyles(job, jobType, theme)}
-            >
-              {job}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
-    </div>
+    <FormControl fullWidth margin='normal'>
+      <InputLabel id='demo-multiple-chip-label'>Job Type</InputLabel>
+      <Select
+        labelId='demo-multiple-chip-label'
+        id='demo-multiple-chip'
+        multiple
+        value={jobType}
+        onChange={handleChange}
+        input={<OutlinedInput id='select-multiple-chip' label='Job Type' />}
+        renderValue={(selected) => (
+          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+            {selected.map((value) => (
+              <Chip key={value} label={value} />
+            ))}
+          </Box>
+        )}
+        MenuProps={MenuProps}
+        margin='dense'
+      >
+        {jobTypes.map((job) => (
+          <MenuItem
+            key={job}
+            value={job}
+            style={getStyles(job, jobType, theme)}
+          >
+            {job}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
   );
 }
