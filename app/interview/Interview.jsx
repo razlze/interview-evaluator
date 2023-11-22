@@ -101,8 +101,25 @@ export default function Interview() {
   }, [recordingBlob]);
 
   useEffect(() => {
-    askQuestion();
+    // askQuestion();
   }, [questionsAnswered]);
+
+  const textToSpeech = async () => {
+    const res = await fetch('util/textToSpeech', {
+      method: 'POST',
+      body: JSON.stringify({
+        text: 'Hello, welcome to your interview. My name is Nicholas and I am the CEO of this company. And who are you?',
+      }),
+    });
+
+    const result = await res.arrayBuffer();
+
+    const blob = new Blob([result], { type: 'audio/mpeg' });
+    const url = URL.createObjectURL(blob);
+
+    const audio = new Audio(url);
+    audio.play();
+  };
 
   return (
     <>
@@ -113,6 +130,9 @@ export default function Interview() {
         sx={{ marginTop: '1rem' }}
       >
         {isRecording ? 'Stop' : 'Start Recording'}
+      </Button>
+      <Button onClick={textToSpeech} variant='outlined'>
+        Text to Speech
       </Button>
     </>
   );
