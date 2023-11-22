@@ -1,9 +1,7 @@
 import Container from '@mui/material/Container';
-import { Box, ThemeProvider } from '@mui/material';
 import './globals.css';
 import JobProvider from './providers/JobProvider';
 import QuestionProvider from './providers/QuestionProvider';
-import theme from './theme';
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,24 +12,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang='en'>
       <body suppressHydrationWarning={true}>
-        <ThemeProvider theme={theme}>
-          <JobProvider>
-            <QuestionProvider>
-              <Box
-                sx={{
-                  background:
-                    'linear-gradient(108deg, #FAF3DD -0.23%, rgba(143, 192, 169, 0.00) 91.06%), #C8D5B9',
-                }}
-                minHeight='100vh'
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-              >
-                <Container maxWidth='md'>{children}</Container>
-              </Box>
-            </QuestionProvider>
-          </JobProvider>
-        </ThemeProvider>
+        <JobProvider>
+          <QuestionProvider>
+            <Container maxWidth='md'>{children}</Container>
+          </QuestionProvider>
+        </JobProvider>
       </body>
     </html>
   );
