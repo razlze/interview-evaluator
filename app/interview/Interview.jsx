@@ -14,7 +14,7 @@ export default function Interview() {
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
 
   const parseAudio = async (blob) => {
-    const res = await fetch('http://localhost:3000/util/speechToText', {
+    const res = await fetch('/util/speechToText', {
       method: 'POST',
       body: blob,
     });
@@ -32,7 +32,7 @@ export default function Interview() {
   };
 
   const askQuestion = async () => {
-    const fetchBase = 'http://localhost:3000/util/chatGPT?queryType=';
+    const fetchBase = '/util/chatGPT?queryType=';
     let fetchURL = '';
     let requestBody = {};
 
