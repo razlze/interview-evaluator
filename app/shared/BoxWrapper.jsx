@@ -36,7 +36,7 @@ export default function BoxWrapper({ title, imageSrc, children }) {
       <Box
         height={5}
         mb={4}
-        mt={1}
+        mt={2}
         width='6rem'
         bgcolor='primary.main'
         borderRadius={1}

@@ -16,6 +16,7 @@ let theme = createTheme({
       dark: '#354F52',
     },
     secondary: {
+      light: '#E6F3ED',
       main: '#FAF3DD',
     },
     text: {
@@ -28,6 +29,11 @@ let theme = createTheme({
       fontSize: '2rem',
       fontWeight: 600,
       textAlign: 'center',
+    },
+    h3: {
+      fontSize: '1.3rem',
+      fontWeight: 600,
+      textAlign: 'left',
     },
   },
   components: {
