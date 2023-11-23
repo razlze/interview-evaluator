@@ -12,6 +12,7 @@ export default function Interview() {
   const [jobInfo, setJobInfo] = useContext(JobContext);
   const [questions, setQuestions] = useContext(QuestionContext);
   const [questionsAnswered, setQuestionsAnswered] = useState(0);
+  const [initialRender, setInitialRender] = useState(true);
 
   const parseAudio = async (blob) => {
     const res = await fetch('/util/speechToText', {
@@ -64,13 +65,9 @@ export default function Interview() {
       body: JSON.stringify(requestBody),
     });
 
-    const result = await res.json().then((res) => console.log(res.res));
-
-    if (questionsAnswered < questions.length) {
-      startRecording();
-    } else {
-      console.log('end of interview');
-    }
+    const result = await res.json().then((res) => {
+      textToSpeech(res.res);
+    });
   };
 
   const {
@@ -101,14 +98,18 @@ export default function Interview() {
   }, [recordingBlob]);
 
   useEffect(() => {
-    // askQuestion();
+    if (!initialRender) {
+      askQuestion();
+    } else {
+      setInitialRender(false);
+    }
   }, [questionsAnswered]);
 
-  const textToSpeech = async () => {
+  const textToSpeech = async (input) => {
     const res = await fetch('util/textToSpeech', {
       method: 'POST',
       body: JSON.stringify({
-        text: 'Hello, welcome to your interview. My name is Nicholas and I am the CEO of this company. And who are you?',
+        text: input,
       }),
     });
 
@@ -118,6 +119,13 @@ export default function Interview() {
     const url = URL.createObjectURL(blob);
 
     const audio = new Audio(url);
+
+    audio.addEventListener('ended', function () {
+      if (questionsAnswered < questions.length) {
+        startRecording();
+      }
+    });
+
     audio.play();
   };
 
@@ -131,8 +139,8 @@ export default function Interview() {
       >
         {isRecording ? 'Stop' : 'Start Recording'}
       </Button>
-      <Button onClick={textToSpeech} variant='outlined'>
-        Text to Speech
+      <Button onClick={askQuestion} variant='outlined'>
+        Start Interview
       </Button>
     </>
   );
