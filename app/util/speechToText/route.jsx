@@ -7,13 +7,10 @@ const openai = new OpenAI();
 export async function POST(request) {
   const blob = await request.blob();
 
-  fs.writeFileSync(
-    __dirname + '/audio.mp3',
-    Buffer.from(await blob.arrayBuffer())
-  );
+  fs.writeFileSync('/temp/audio.mp3', Buffer.from(await blob.arrayBuffer()));
 
   const transcription = await openai.audio.transcriptions.create({
-    file: fs.createReadStream(__dirname + '/audio.mp3'),
+    file: fs.createReadStream('/temp/audio.mp3'),
     model: 'whisper-1',
   });
 
