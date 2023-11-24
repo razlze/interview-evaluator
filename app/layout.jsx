@@ -27,7 +27,14 @@ export default function RootLayout({ children }) {
                 justifyContent='center'
                 alignItems='center'
               >
-                <Container maxWidth='md'>{children}</Container>
+                <Container
+                  maxWidth={false}
+                  sx={{
+                    maxWidth: '65rem',
+                  }}
+                >
+                  {children}
+                </Container>
               </Box>
             </QuestionProvider>
           </JobProvider>

@@ -21,7 +21,7 @@ export default function TitleAndEdit({ title }) {
       </Stack>
       <Box
         height={4}
-        mb={4}
+        mb={3}
         mt={1.2}
         width='3.5rem'
         bgcolor='primary.main'

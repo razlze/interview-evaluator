@@ -34,7 +34,15 @@ let theme = createTheme({
       fontSize: '1.3rem',
       fontWeight: 600,
       textAlign: 'left',
+      color: '#354F52',
     },
+    subtitle1: {
+      fontSize: '0.7rem',
+      fontWeight: 600,
+      color: '#8FC0A9',
+      textTransform: 'uppercase',
+    },
+    body1: {},
   },
   components: {
     MuiButton: {
