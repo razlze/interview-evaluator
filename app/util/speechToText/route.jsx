@@ -1,15 +1,16 @@
 import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
+import * as fs from 'node:fs';
 
 const openai = new OpenAI();
 
 export async function POST(request) {
   const blob = await request.blob();
 
-  const audio = new File([blob], 'answer.webm');
+  fs.writeFileSync('/tmp/audio.mp3', Buffer.from(await blob.arrayBuffer()));
 
   const transcription = await openai.audio.transcriptions.create({
-    file: audio,
+    file: fs.createReadStream('/tmp/audio.mp3'),
     model: 'whisper-1',
   });
 
