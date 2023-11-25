@@ -9,7 +9,7 @@ import {
   CardActions,
 } from '@mui/material';
 import { useContext, useState } from 'react';
-import { QuestionContext } from '../providers/QuestionProvider';
+import { QuestionContext } from '../../providers/QuestionProvider';
 import { useRouter } from 'next/navigation';
 
 export default function QuestionForm() {

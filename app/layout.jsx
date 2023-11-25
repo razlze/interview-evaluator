@@ -1,6 +1,5 @@
-import Container from '@mui/material/Container';
 import './globals.css';
-import { Box, ThemeProvider } from '@mui/material';
+import { ThemeProvider } from '@mui/material';
 import JobProvider from './providers/JobProvider';
 import QuestionProvider from './providers/QuestionProvider';
 import theme from './theme';
@@ -16,20 +15,7 @@ export default function RootLayout({ children }) {
       <body suppressHydrationWarning={true}>
         <ThemeProvider theme={theme}>
           <JobProvider>
-            <QuestionProvider>
-              <Box
-                sx={{
-                  background:
-                    'linear-gradient(108deg, #FAF3DD -0.23%, rgba(143, 192, 169, 0.00) 91.06%), #C8D5B9',
-                }}
-                minHeight='100vh'
-                display='flex'
-                justifyContent='center'
-                alignItems='center'
-              >
-                <Container maxWidth='md'>{children}</Container>
-              </Box>
-            </QuestionProvider>
+            <QuestionProvider>{children}</QuestionProvider>
           </JobProvider>
         </ThemeProvider>
       </body>
