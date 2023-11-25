@@ -65,6 +65,25 @@ let theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: 'contained' },
+          style: {
+            textTransform: 'none',
+            border: '2px solid #354F52',
+            borderRadius: '.8rem',
+            padding: '.5rem 2.5rem',
+            color: 'white',
+            fontWeight: '700',
+            fontSize: '1rem',
+            backgroundColor: '#354F52',
+            boxShadow: '0px 4px 6.599999904632568px 0px #00000040',
+            '&:hover': {
+              border: '2px solid #8FC0A9',
+              backgroundColor: '#8FC0A9',
+              color: '#354F52',
+            },
+          },
+        },
       ],
       styleOverrides: {
         iconSizeMedium: {

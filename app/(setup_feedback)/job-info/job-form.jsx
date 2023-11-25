@@ -70,14 +70,9 @@ export default function JobForm() {
         display='flex'
         justifyContent='end'
         alignItems='center'
-        marginTop='1rem'
+        marginTop='2rem'
       >
-        <Button
-          variant='outlined'
-          sx={{ marginTop: '1rem' }}
-          type='submit'
-          endIcon={<ArrowForward />}
-        >
+        <Button variant='outlined' type='submit' endIcon={<ArrowForward />}>
           Next
         </Button>
       </Box>

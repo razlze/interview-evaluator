@@ -1,23 +1,37 @@
-import { Box, Stack, Typography } from '@mui/material';
-import { RiPencilFill } from 'react-icons/ri';
-import React from 'react';
+'use client';
 
-export default function TitleAndEdit({ title }) {
+import { Box, IconButton, Stack, Typography } from '@mui/material';
+import ModeEditSharpIcon from '@mui/icons-material/ModeEditSharp';
+import React from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function TitleAndEdit({ title, editPath }) {
+  const router = useRouter();
+
   return (
     <>
-      <Stack direction='row' spacing={2}>
+      <Stack
+        direction='row'
+        spacing={2}
+        display='flex'
+        alignItems='center'
+        justifyContent='between'
+      >
         <Typography variant='h3'>{title}</Typography>
-        <Box
-          display='flex'
-          bgcolor='primary.main'
-          justifyContent='center'
-          alignItems='center'
-          borderRadius='50%'
-          width='1.7rem'
-          height='1.7rem'
+        <IconButton
+          aria-label='edit'
+          onClick={() => router.push(editPath)}
+          sx={{
+            bgcolor: 'primary.main',
+            width: '1.9rem',
+            height: '1.9rem',
+            '&:hover': {
+              bgcolor: 'primary.dark',
+            },
+          }}
         >
-          <RiPencilFill color='white' />
-        </Box>
+          <ModeEditSharpIcon htmlColor='white' fontSize='small' />
+        </IconButton>
       </Stack>
       <Box
         height={4}

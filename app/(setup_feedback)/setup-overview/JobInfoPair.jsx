@@ -10,7 +10,7 @@ export default function JobInfoPair({ fieldName, jobField }) {
   return (
     <Box hidden={jobInfo[jobField] === null || jobInfo[jobField].length === 0}>
       <Typography variant='subtitle1'>{fieldName}</Typography>
-      <Typography variant='body1'>
+      <Typography variant='body1' whiteSpace='pre-wrap'>
         {jobField == 'type' ? jobInfo[jobField].join(', ') : jobInfo[jobField]}
       </Typography>
     </Box>

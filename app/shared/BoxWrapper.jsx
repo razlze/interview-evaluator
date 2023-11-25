@@ -11,6 +11,7 @@ export default function BoxWrapper({ title, imageSrc, children }) {
         flexDirection: 'column',
         alignItems: 'center',
         borderRadius: '1rem',
+        mt: '2rem',
       }}
       elevation={8}
     >
