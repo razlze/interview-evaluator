@@ -29,6 +29,15 @@ let theme = createTheme({
       fontWeight: 600,
       textAlign: 'center',
     },
+    h2: {
+      fontSize: '1.5rem',
+      fontWeight: 600,
+    },
+    green: {
+      fontFamily: openSans.style.fontFamily,
+      color: '#8FC0A9',
+      fontWeight: 700,
+    },
   },
   components: {
     MuiButton: {

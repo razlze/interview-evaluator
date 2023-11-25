@@ -2,11 +2,12 @@
 
 // using provided audio recorder, will replace with custom UI later
 import { useAudioRecorder } from 'react-audio-voice-recorder';
-import { Button } from '@mui/material';
+import { Button, Box, Typography, Grid } from '@mui/material';
 import { useEffect, useContext, useState } from 'react';
 import WebCamera from './webcam';
 import { JobContext } from '../../providers/JobProvider';
 import { QuestionContext } from '../../providers/QuestionProvider';
+import { Player } from '@lottiefiles/react-lottie-player';
 
 export default function Interview() {
   const [jobInfo, setJobInfo] = useContext(JobContext);
@@ -99,7 +100,7 @@ export default function Interview() {
 
   useEffect(() => {
     if (!initialRender) {
-      askQuestion();
+      // askQuestion();
     } else {
       setInitialRender(false);
     }
@@ -131,7 +132,59 @@ export default function Interview() {
 
   return (
     <>
-      <WebCamera />
+      <Box sx={{ display: 'flex', width: '100%' }}>
+        <Box>
+          <Typography variant='h2'>Welcome to your interview, Razi</Typography>
+          <Box
+            height={5}
+            mb={4}
+            mt={2}
+            width='6rem'
+            bgcolor='primary.main'
+            borderRadius={1}
+          />
+        </Box>
+        <Box
+          sx={{
+            marginLeft: 'auto',
+            bgcolor: '#E6F3ED',
+            borderRadius: '0.5rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            height: '3rem',
+            width: '10.45rem',
+          }}
+        >
+          <Typography variant='green'>4 questions left</Typography>
+        </Box>
+      </Box>
+
+      <Grid container spacing={3}>
+        <Grid item xs={4}>
+          <Box
+            sx={{
+              height: '100%',
+              width: '100%',
+              bgcolor: '#DDDDDD',
+              borderRadius: '1.25rem',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+          >
+            <Player
+              autoplay
+              loop
+              src='/Interviewer.json'
+              style={{ width: '25rem' }}
+            ></Player>
+          </Box>
+        </Grid>
+        <Grid item xs={8}>
+          <WebCamera />
+        </Grid>
+      </Grid>
       <Button
         variant='contained'
         onClick={toggleRecord}
