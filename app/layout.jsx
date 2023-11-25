@@ -2,6 +2,7 @@ import './globals.css';
 import { ThemeProvider } from '@mui/material';
 import JobProvider from './providers/JobProvider';
 import QuestionProvider from './providers/QuestionProvider';
+import UserDetailsProvider from './providers/UserDetailsProvider';
 import theme from './theme';
 
 export const metadata = {
@@ -14,9 +15,11 @@ export default function RootLayout({ children }) {
     <html lang='en'>
       <body suppressHydrationWarning={true}>
         <ThemeProvider theme={theme}>
-          <JobProvider>
-            <QuestionProvider>{children}</QuestionProvider>
-          </JobProvider>
+          <UserDetailsProvider>
+            <JobProvider>
+              <QuestionProvider>{children}</QuestionProvider>
+            </JobProvider>
+          </UserDetailsProvider>
         </ThemeProvider>
       </body>
     </html>
