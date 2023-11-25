@@ -74,6 +74,13 @@ let theme = createTheme({
         },
       },
     },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          fontFamily: openSans.style.fontFamily,
+        },
+      },
+    },
   },
 });
 
