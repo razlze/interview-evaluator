@@ -16,13 +16,17 @@ export default function JobForm() {
   const [type, setType] = useState(jobInfo.type);
   const router = useRouter();
 
+  const removeWhitespace = (text) => {
+    return text.trim().length === 0 ? '' : text;
+  };
+
   const handleNext = (e) => {
     e.preventDefault();
     setJobInfo({
-      title: title,
+      title: removeWhitespace(title),
       type: type,
-      company: company,
-      reqs: reqs,
+      company: removeWhitespace(company),
+      reqs: removeWhitespace(reqs),
     });
     router.push('/question-entry');
   };
@@ -66,14 +70,9 @@ export default function JobForm() {
         display='flex'
         justifyContent='end'
         alignItems='center'
-        marginTop='1rem'
+        marginTop='2rem'
       >
-        <Button
-          variant='outlined'
-          sx={{ marginTop: '1rem' }}
-          type='submit'
-          endIcon={<ArrowForward />}
-        >
+        <Button variant='outlined' type='submit' endIcon={<ArrowForward />}>
           Next
         </Button>
       </Box>
