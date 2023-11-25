@@ -5,8 +5,8 @@ import { useAudioRecorder } from 'react-audio-voice-recorder';
 import { Button } from '@mui/material';
 import { useEffect, useContext, useState } from 'react';
 import WebCamera from './webcam';
-import { JobContext } from '../providers/JobProvider';
-import { QuestionContext } from '../providers/QuestionProvider';
+import { JobContext } from '../../providers/JobProvider';
+import { QuestionContext } from '../../providers/QuestionProvider';
 
 export default function Interview() {
   const [jobInfo, setJobInfo] = useContext(JobContext);
