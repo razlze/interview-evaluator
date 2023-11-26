@@ -154,7 +154,9 @@ export default function Interview() {
   };
 
   useEffect(() => {
-    setQuestionDisplay('Welcome to your interview, ' + userDetails.name);
+    setQuestionDisplay(
+      'Welcome to your interview, ' + userDetails.name.replace(/ .*/, '')
+    );
   }, []);
 
   useEffect(() => {
