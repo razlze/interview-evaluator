@@ -1,4 +1,4 @@
-import { Box, Container } from '@mui/material';
+import { Box } from '@mui/material';
 
 export default function RootLayout({ children }) {
   return (
@@ -12,14 +12,7 @@ export default function RootLayout({ children }) {
       justifyContent='center'
       alignItems='center'
     >
-      <Container
-        maxWidth={false}
-        sx={{
-          maxWidth: '65rem',
-        }}
-      >
-        {children}
-      </Container>
+      {children}
     </Box>
   );
 }
