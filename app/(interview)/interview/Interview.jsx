@@ -305,7 +305,11 @@ export default function Interview() {
               fontWeight: 700,
             }}
           >
-            {questions.length - questionsAnswered} questions left
+            {questions.length - questionsAnswered}{' '}
+            {questions.length - questionsAnswered == 1
+              ? 'question'
+              : 'questions'}{' '}
+            left
           </Typography>
         </Box>
       </Box>
@@ -426,7 +430,7 @@ export default function Interview() {
         >
           {questionsAnswered == questions.length
             ? 'End Interview'
-            : 'Next Question'}
+            : 'Submit Answer'}
         </Button>
       </Box>
     </>
