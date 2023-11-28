@@ -1,7 +1,7 @@
 import { Typography, Box, Paper } from '@mui/material';
 import Image from 'next/image';
 
-export default function BoxWrapper({ title, imageSrc, children }) {
+export default function BoxWrapper({ title, imageSrc, children, style }) {
   return (
     <Paper
       sx={{
@@ -12,6 +12,7 @@ export default function BoxWrapper({ title, imageSrc, children }) {
         alignItems: 'center',
         borderRadius: '1rem',
         mt: '2rem',
+        ...style,
       }}
       elevation={8}
     >
