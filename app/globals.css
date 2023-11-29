@@ -19,9 +19,38 @@ body {
   border-radius: 5px;
 }
 
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #354f52;
+/* width */
+.feedbackScroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.feedbackScroll::-webkit-scrollbar-track {
+  background: #d2e9de;
+  border-radius: 5px;
+}
+
+/* Handle */
+.feedbackScroll::-webkit-scrollbar-thumb {
+  background: #8fc0a966;
+  border-radius: 5px;
+}
+
+/* width */
+.greyScroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.greyScroll::-webkit-scrollbar-track {
+  background: #f4f4f4;
+  border-radius: 5px;
+}
+
+/* Handle */
+.greyScroll::-webkit-scrollbar-thumb {
+  background: #c2c2c266;
+  border-radius: 5px;
 }
 
 .active {

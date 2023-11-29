@@ -5,7 +5,7 @@ import React from 'react';
 
 export default function FeedbackInfoPair({ fieldName, feedbackContent }) {
   return (
-    <Box>
+    <Box mb={1}>
       <Typography variant='subtitle1'>{fieldName}</Typography>
       <Typography variant='body1' whiteSpace='pre-wrap'>
         {feedbackContent}

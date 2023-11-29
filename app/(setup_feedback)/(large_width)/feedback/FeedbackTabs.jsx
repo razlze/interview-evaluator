@@ -1,6 +1,7 @@
 import React from 'react';
 import { Typography, Box, Tabs, Tab } from '@mui/material';
 import { useState } from 'react';
+import FeedbackInfoPair from './FeedbackInfoPair';
 
 function CustomTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -11,13 +12,16 @@ function CustomTabPanel(props) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
+      className='feedbackScroll'
       {...other}
+      style={{
+        margin: '24px 32px 24px 40px',
+        overflowY: 'auto',
+        // height: 'calc(45vh - 3.5rem- 48px)',
+        flex: 1,
+      }}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ marginRight: '1.5rem' }}>{children}</Box>}
     </div>
   );
 }
@@ -29,7 +33,7 @@ function a11yProps(index) {
   };
 }
 
-export default function FeedbackTabs({ strengths, weaknesses }) {
+export default function FeedbackTabs({ questionFeedback }) {
   const [tabValue, setTabValue] = useState(0);
 
   const handleTabChange = (event, newValue) => {
@@ -78,10 +82,30 @@ export default function FeedbackTabs({ strengths, weaknesses }) {
         />
       </Tabs>
       <CustomTabPanel value={tabValue} index={0}>
-        Item One
+        {Object.entries(questionFeedback['strengths']).map(
+          ([key, value], index) => {
+            return (
+              <FeedbackInfoPair
+                key={index}
+                fieldName={key}
+                feedbackContent={value}
+              />
+            );
+          }
+        )}
       </CustomTabPanel>
       <CustomTabPanel value={tabValue} index={1}>
-        Item Two
+        {Object.entries(questionFeedback['improvements']).map(
+          ([key, value], index) => {
+            return (
+              <FeedbackInfoPair
+                key={index}
+                fieldName={key}
+                feedbackContent={value}
+              />
+            );
+          }
+        )}
       </CustomTabPanel>
     </>
   );

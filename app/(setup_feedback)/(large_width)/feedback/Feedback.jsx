@@ -13,12 +13,34 @@ import { useRouter } from 'next/navigation';
 
 const feedback = {
   overall: 'kajndkjasndkjnasdkjnaskjdnkajsnd',
-  questions: [
-    {
-      focus: 'akjsdnkajsndkjansdkjnaskjd',
-      love: 'kajsdnkjansdkjnasdkjnasd',
+  0: {
+    strengths: {
+      'Alignment with company values':
+        "You did a good job of mentioning that you agree with the company's values on company transparency and growth. This shows that you have done your research on the company and understand what they value.",
+      'Mentioning work culture':
+        "It's great that you mentioned that you love the work culture of the company. This shows that you have an understanding of the company beyond just the job requirements.",
     },
-  ],
+    improvements: {
+      'Lack of specific examples':
+        "While mentioning that you love the work culture and agree with the company's values is a good start, it would have been even better if you could have provided specific examples or experiences that have led you to feel this way. This would have made your answer more authentic and personal.",
+      'Not connecting answer to role':
+        "Although it's great that you mentioned the company's values and work culture, you could have also mentioned how these align with the specific role you are applying for. This would have shown the interviewer that you understand how your values and the company's values can contribute to the success of the role. at you love the work cultu",
+    },
+  },
+  1: {
+    strengths: {
+      'Alignment with company values':
+        "You did a good job of mentioning that you agree with the company's values on company transparency and grow",
+      'Mentioning work culture':
+        "It's great that you mentioned that you love the he job requirements.",
+    },
+    improvements: {
+      'Lack of specific examples':
+        "While mentioning that you love the work culture and agree with the company's values is a good start, it would have been even better if you could have provided specific examples or experiences that have led you to feel this way. This would have made your answer more authentic and personal.",
+      'Not connecting answer to role':
+        "Although it's great that you mentioned the company's values and work culture, ",
+    },
+  },
 };
 
 export default function Feedback() {
@@ -84,25 +106,25 @@ export default function Feedback() {
         >
           <Grid container sx={{ height: '100%' }}>
             {currentQuestion != -1 && (
-              <Grid
-                item
-                maxHeight='15rem'
-                paddingRight='3rem'
-                paddingY='1.5rem'
-                xs={6}
-              >
-                <Typography variant='h3'>
-                  {questions[currentQuestion].question}
-                </Typography>
+              <Grid item paddingRight='1.5rem' xs={6} sx={{ height: '45vh' }}>
                 <Box
-                  height={4}
-                  mb={3}
-                  mt={1.2}
-                  width='3.5rem'
-                  bgcolor='primary.main'
-                  borderRadius={1}
-                />
-                <Typography>{questions[currentQuestion].answer}</Typography>
+                  height='100%'
+                  sx={{ overflow: 'auto', paddingRight: '1rem' }}
+                  className='greyScroll'
+                >
+                  <Typography variant='h3'>
+                    {questions[currentQuestion].question}
+                  </Typography>
+                  <Box
+                    height={4}
+                    mb={3}
+                    mt={1.2}
+                    width='3.5rem'
+                    bgcolor='primary.main'
+                    borderRadius={1}
+                  />
+                  <Typography>{questions[currentQuestion].answer}</Typography>
+                </Box>
               </Grid>
             )}
 
@@ -131,8 +153,19 @@ export default function Feedback() {
               </Grid>
             )}
             {currentQuestion != -1 && (
-              <Grid item xs={6} bgcolor='secondary.light' borderRadius='.5rem'>
-                <FeedbackTabs />
+              <Grid
+                item
+                xs={6}
+                bgcolor='secondary.light'
+                borderRadius='.5rem'
+                sx={{
+                  height: '45vh',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'stretch',
+                }}
+              >
+                <FeedbackTabs questionFeedback={feedback[currentQuestion]} />
               </Grid>
             )}
           </Grid>

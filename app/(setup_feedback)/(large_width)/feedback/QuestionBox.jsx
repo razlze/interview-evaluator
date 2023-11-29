@@ -12,6 +12,10 @@ export default function QuestionBox({ index, question, active, setActive }) {
         textAlign: 'left',
         alignItems: 'start',
         boxShadow: '0px 4px 19.2px 0px rgba(0, 0, 0, 0.25)',
+        borderWidth: '5px',
+        '&:hover': {
+          borderWidth: '5px',
+        },
       }}
       variant='contained'
       onClick={() => setActive(index)}
