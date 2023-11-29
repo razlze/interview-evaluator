@@ -9,7 +9,7 @@ export default function QuestionProvider({ children }) {
     {
       question: 'Why do you want to work for our company?',
       answer:
-        "Because I love the work culture of your company and agree with the company's values on company transparency and growth.",
+        'I would like to work for your company because I am passionate about the technologies that your company works with.',
     },
     {
       question: 'What is your favourite programming language and why?',

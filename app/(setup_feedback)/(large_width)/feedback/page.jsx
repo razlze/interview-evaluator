@@ -3,9 +3,9 @@ import Feedback from './Feedback';
 import Loading from './loading';
 import { useEffect, useContext, useState } from 'react';
 
-import { FeedbackContext } from '../../providers/FeedbackProvider';
-import { QuestionContext } from '../../providers/QuestionProvider';
-import { JobContext } from '../../providers/JobProvider';
+import { FeedbackContext } from '../../../providers/FeedbackProvider';
+import { QuestionContext } from '../../../providers/QuestionProvider';
+import { JobContext } from '../../../providers/JobProvider';
 
 export default function Page() {
   const [questions] = useContext(QuestionContext);

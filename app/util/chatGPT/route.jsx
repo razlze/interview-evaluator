@@ -57,7 +57,7 @@ Here is the array of objects:
 *insert_questions_here*
 
 Please limit the feedback to 150 words and do not repeat the question or the answer. You are speaking to the candidate in second person. Your answer should be in the format of 
-a string. Replace any newlines in your answer with the line break character \\n.
+a string.
 `;
 
 export async function POST(request) {
