@@ -50,8 +50,8 @@ export default function Feedback() {
         />
         <Box
           sx={{
-            overflow: 'auto',
-            maxHeight: '50vh',
+            overflowY: 'auto',
+            maxHeight: '60vh',
             width: 'calc(100% + 1rem + 5px)',
           }}
         >
@@ -89,7 +89,7 @@ export default function Feedback() {
                 maxHeight='15rem'
                 paddingRight='3rem'
                 paddingY='1.5rem'
-                xs={5}
+                xs={6}
               >
                 <Typography variant='h3'>
                   {questions[currentQuestion].question}
@@ -131,7 +131,7 @@ export default function Feedback() {
               </Grid>
             )}
             {currentQuestion != -1 && (
-              <Grid item xs={7} bgcolor='secondary.light' borderRadius='.5rem'>
+              <Grid item xs={6} bgcolor='secondary.light' borderRadius='.5rem'>
                 <FeedbackTabs />
               </Grid>
             )}
