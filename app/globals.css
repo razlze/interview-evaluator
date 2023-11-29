@@ -108,3 +108,15 @@ body {
     transform: rotate(405deg);
   }
 }
+
+.show {
+  opacity: 100%;
+}
+
+.hide {
+  opacity: 0%;
+}
+
+.transition {
+  height: auto !important;
+}
