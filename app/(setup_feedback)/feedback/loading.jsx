@@ -14,7 +14,7 @@ export default function Loading() {
         <div className='half'></div>
       </div>
       <Typography color='primary.dark' fontSize='1.2rem' mt={4}>
-        Evaluating overall performance...
+        Evaluating your interview answers...
       </Typography>
     </Box>
   );

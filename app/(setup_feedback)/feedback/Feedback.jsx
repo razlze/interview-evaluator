@@ -1,29 +1,46 @@
 'use client';
 
-import { useEffect, useContext, useState } from 'react';
-import { Button, Box, Typography } from '@mui/material';
+import { useContext } from 'react';
+import { Box, Typography } from '@mui/material';
 import { FeedbackContext } from '../../providers/FeedbackProvider';
 
 export default function Feedback() {
-  const [feedback, setFeedback] = useContext(FeedbackContext);
-  console.log(feedback);
+  const [feedback] = useContext(FeedbackContext);
   return (
     <>
-      <Typography variant='h4'>Strengths</Typography>
-      {Object.entries(feedback['strengths']).map(([key, value]) => {
+      {Object.entries(feedback).map(([index, comments]) => {
         return (
-          <Box key={key}>
-            <Typography variant='h3'>{key}</Typography>
-            <Typography variant='body1'>{value}</Typography>
-          </Box>
-        );
-      })}
-      <Typography variant='h4'>Weaknesses</Typography>
-      {Object.entries(feedback['improvements']).map(([key, value]) => {
-        return (
-          <Box key={key}>
-            <Typography variant='h3'>{key}</Typography>
-            <Typography variant='body1'>{value}</Typography>
+          <Box key={index}>
+            {index == 'overall' ? (
+              <>
+                <Typography variant='h1'>Feedback {index}</Typography>
+                <Typography variant='body'>{comments}</Typography>
+              </>
+            ) : (
+              <>
+                <Typography variant='h1'>Question {index}</Typography>
+                <Typography variant='h4'>Strengths</Typography>
+                {Object.entries(comments['strengths']).map(([key, value]) => {
+                  return (
+                    <Box key={key}>
+                      <Typography variant='h3'>{key}</Typography>
+                      <Typography variant='body1'>{value}</Typography>
+                    </Box>
+                  );
+                })}
+                <Typography variant='h4'>Weaknesses</Typography>
+                {Object.entries(comments['improvements']).map(
+                  ([key, value]) => {
+                    return (
+                      <Box key={key}>
+                        <Typography variant='h3'>{key}</Typography>
+                        <Typography variant='body1'>{value}</Typography>
+                      </Box>
+                    );
+                  }
+                )}
+              </>
+            )}
           </Box>
         );
       })}
