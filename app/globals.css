@@ -66,4 +66,7 @@ body {
   background-color: rgba(0, 0, 0, 0);
   border: 5px solid #354f52;
   cursor: default;
+  
+.transition {
+  height: auto !important;
 }
