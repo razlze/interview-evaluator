@@ -30,6 +30,10 @@ let theme = createTheme({
       fontWeight: 600,
       textAlign: 'center',
     },
+    h2: {
+      fontSize: '1.5rem',
+      fontWeight: 600,
+    },
     h3: {
       fontSize: '1.3rem',
       fontWeight: 600,
@@ -81,6 +85,32 @@ let theme = createTheme({
               border: '2px solid #8FC0A9',
               backgroundColor: '#8FC0A9',
               color: '#354F52',
+            },
+            '&.Mui-disabled': {
+              color: '#354F524D',
+              border: '2px solid #354F524D',
+            },
+          },
+        },
+        {
+          props: { variant: 'error' },
+          style: {
+            border: '2px solid #E65D5D',
+            borderRadius: '.8rem',
+            padding: '.5rem 1.5rem',
+            color: '#E65D5D',
+            fontWeight: '700',
+            fontSize: '1rem',
+            backgroundColor: '#E65D5D24',
+            textTransform: 'none',
+            '&:hover': {
+              backgroundColor: '#E65D5D',
+              color: 'white',
+            },
+            '&.Mui-disabled': {
+              backgroundColor: '#E65D5D1A',
+              color: '#E65D5D4D',
+              border: '2px solid #E65D5D4D',
             },
           },
         },

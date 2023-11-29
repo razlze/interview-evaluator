@@ -1,3 +1,15 @@
 body {
   margin: 0;
 }
+
+.show {
+  opacity: 100%;
+}
+
+.hide {
+  opacity: 0%;
+}
+
+.transition {
+  height: auto !important;
+}
