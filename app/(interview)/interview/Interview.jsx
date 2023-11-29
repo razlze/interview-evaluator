@@ -358,7 +358,6 @@ export default function Interview() {
                 sx={{ '&.MuiChip-icon': { color: '#AF6161' } }}
               />
             }
-            className={interviewerTalking ? 'show' : 'hide'}
             label='Please wait for the interviewer to finish speaking'
             sx={{
               position: 'absolute',
@@ -367,6 +366,7 @@ export default function Interview() {
               right: '1rem',
               backgroundColor: '#FB2D2D54',
               transition: '0.5s',
+              opacity: interviewerTalking ? '100%' : '0%',
             }}
           ></Chip>
           <Chip
@@ -375,7 +375,6 @@ export default function Interview() {
                 sx={{ '&.MuiChip-icon': { color: '#799D8C' } }}
               />
             }
-            className={isRecording ? 'show' : 'hide'}
             label='You may answer the question now'
             sx={{
               position: 'absolute',
@@ -384,6 +383,7 @@ export default function Interview() {
               right: '1rem',
               backgroundColor: '#28C17B4D',
               transition: '0.5s',
+              opacity: isRecording ? '100%' : '0%',
             }}
           ></Chip>
           <Chip
