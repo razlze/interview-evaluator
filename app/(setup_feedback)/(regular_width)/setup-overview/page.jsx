@@ -1,5 +1,5 @@
 import { Box, Grid, Stack } from '@mui/material';
-import BoxWrapper from '../../shared/BoxWrapper';
+import BoxWrapper from '../../../shared/BoxWrapper';
 import TitleAndEdit from './TitleAndEdit';
 import JobInfoPair from './JobInfoPair';
 import InterviewQuestions from './InterviewQuestions';
