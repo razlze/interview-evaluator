@@ -13,10 +13,14 @@ export default function QuestionProvider({ children }) {
     },
     {
       question: 'What is your favourite programming language and why?',
-      answer: '',
+      answer:
+        'My favourite programming language is Python because it allows me to code in fewer lines and is the language of Machine Learning.',
     },
-    { question: 'What are your salary expectations?', answer: '' },
-    { question: 'What are your salary expectations?', answer: '' },
+    {
+      question: 'What are your salary expectations?',
+      answer:
+        'My salary expectations are in between $30 per hour and $40 per hour.',
+    },
   ]);
   return (
     <QuestionContext.Provider value={[questions, setQuestions]}>

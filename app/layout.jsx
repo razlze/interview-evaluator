@@ -3,6 +3,7 @@ import { ThemeProvider } from '@mui/material';
 import JobProvider from './providers/JobProvider';
 import QuestionProvider from './providers/QuestionProvider';
 import UserDetailsProvider from './providers/UserDetailsProvider';
+import FeedbackProvider from './providers/FeedbackProvider';
 import theme from './theme';
 
 export const metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({ children }) {
         <ThemeProvider theme={theme}>
           <UserDetailsProvider>
             <JobProvider>
-              <QuestionProvider>{children}</QuestionProvider>
+              <FeedbackProvider>
+                <QuestionProvider>{children}</QuestionProvider>
+              </FeedbackProvider>
             </JobProvider>
           </UserDetailsProvider>
         </ThemeProvider>

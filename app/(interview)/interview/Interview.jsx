@@ -25,7 +25,9 @@ import { UserDetailsContext } from '../../providers/UserDetailsProvider';
 import { useAudioRecorder } from 'react-audio-voice-recorder';
 import WebCamera from './webcam';
 import { Player } from '@lottiefiles/react-lottie-player';
-import TextTransition, { presets } from 'react-text-transition';
+import TextTransition from 'react-text-transition';
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Interview() {
   const [jobInfo, setJobInfo] = useContext(JobContext);
@@ -39,6 +41,7 @@ export default function Interview() {
   const [interviewComplete, setInterviewComplete] = useState(false);
   const [modalOpen, setModalOpen] = useState(true);
 
+  const router = useRouter();
   const interviewerPlayer = useRef(null);
   const speech = useRef(null);
   const ready = useRef(false);
@@ -405,33 +408,46 @@ export default function Interview() {
           <WebCamera />
         </Grid>
       </Grid>
-      <Box sx={{ display: 'flex', justifyContent: 'end', gap: 2 }} mt={2}>
-        <Button
-          variant='error'
-          disabled={isRecording ? false : true}
-          startIcon={<ReplayIcon />}
-          onClick={redoQuestion}
-        >
-          Redo
-        </Button>
-        <Button
-          disabled={isRecording || interviewComplete ? false : true}
-          variant='outlined'
-          onClick={stopRecording}
-          endIcon={
-            questionsAnswered == questions.length ? null : <ArrowForward />
-          }
-          startIcon={
-            questionsAnswered == questions.length ? (
-              <CallEndRoundedIcon />
-            ) : null
-          }
-          sx={{ padding: '.5rem 1.5rem', boxShadow: 'none' }}
-        >
-          {questionsAnswered == questions.length
-            ? 'End Interview'
-            : 'Submit Answer'}
-        </Button>
+      <Box
+        sx={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          width: '100%',
+        }}
+      >
+        <Box width='18rem'></Box>
+        <Image src={'controls.svg'} width={350} height={120} alt='controls' />
+        <Box mt={4}>
+          <Button
+            variant='error'
+            disabled={isRecording ? false : true}
+            startIcon={<ReplayIcon />}
+            onClick={redoQuestion}
+          >
+            Redo
+          </Button>
+          <Button
+            disabled={isRecording || interviewComplete ? false : true}
+            variant='outlined'
+            onClick={
+              interviewComplete ? () => router.push('/feedback') : stopRecording
+            }
+            endIcon={
+              questionsAnswered == questions.length ? null : <ArrowForward />
+            }
+            startIcon={
+              questionsAnswered == questions.length ? (
+                <CallEndRoundedIcon />
+              ) : null
+            }
+            sx={{ padding: '.5rem 1.5rem', boxShadow: 'none', ml: 2 }}
+          >
+            {questionsAnswered == questions.length
+              ? 'End Interview'
+              : 'Submit Answer'}
+          </Button>
+        </Box>
       </Box>
     </>
   );

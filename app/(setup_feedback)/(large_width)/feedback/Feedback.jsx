@@ -3,48 +3,17 @@
 import { Grid, Typography, Box, Stack, Button } from '@mui/material';
 import BoxWrapper from '../../../shared/BoxWrapper';
 
-import { useEffect, useContext, useState } from 'react';
+import { useContext, useState } from 'react';
 import { QuestionContext } from '../../../providers/QuestionProvider';
-import FeedbackInfoPair from './FeedbackInfoPair';
+import { FeedbackContext } from '../../../providers/FeedbackProvider';
 import QuestionBox from './QuestionBox';
 import FeedbackTabs from './FeedbackTabs';
 import ReplayRoundedIcon from '@mui/icons-material/ReplayRounded';
 import { useRouter } from 'next/navigation';
 
-const feedback = {
-  overall: 'kajndkjasndkjnasdkjnaskjdnkajsnd',
-  0: {
-    strengths: {
-      'Alignment with company values':
-        "You did a good job of mentioning that you agree with the company's values on company transparency and growth. This shows that you have done your research on the company and understand what they value.",
-      'Mentioning work culture':
-        "It's great that you mentioned that you love the work culture of the company. This shows that you have an understanding of the company beyond just the job requirements.",
-    },
-    improvements: {
-      'Lack of specific examples':
-        "While mentioning that you love the work culture and agree with the company's values is a good start, it would have been even better if you could have provided specific examples or experiences that have led you to feel this way. This would have made your answer more authentic and personal.",
-      'Not connecting answer to role':
-        "Although it's great that you mentioned the company's values and work culture, you could have also mentioned how these align with the specific role you are applying for. This would have shown the interviewer that you understand how your values and the company's values can contribute to the success of the role. at you love the work cultu",
-    },
-  },
-  1: {
-    strengths: {
-      'Alignment with company values':
-        "You did a good job of mentioning that you agree with the company's values on company transparency and grow",
-      'Mentioning work culture':
-        "It's great that you mentioned that you love the he job requirements.",
-    },
-    improvements: {
-      'Lack of specific examples':
-        "While mentioning that you love the work culture and agree with the company's values is a good start, it would have been even better if you could have provided specific examples or experiences that have led you to feel this way. This would have made your answer more authentic and personal.",
-      'Not connecting answer to role':
-        "Although it's great that you mentioned the company's values and work culture, ",
-    },
-  },
-};
-
 export default function Feedback() {
-  const [questions, setQuestions] = useContext(QuestionContext);
+  const [feedback] = useContext(FeedbackContext);
+  const [questions] = useContext(QuestionContext);
   const [currentQuestion, setCurrentQuestion] = useState(-1); // -1 for overall feedback
   const router = useRouter();
 
@@ -134,9 +103,9 @@ export default function Feedback() {
                 xs={12}
                 bgcolor='secondary.light'
                 borderRadius='.5rem'
-                paddingY='1.5rem'
-                paddingLeft='2rem'
-                paddingRight='1rem'
+                paddingY='2rem'
+                paddingX='2.5rem'
+                height='45vh'
               >
                 <Typography variant='h3'>Overall Performance</Typography>
                 <Box
