@@ -14,7 +14,7 @@ export default function Feedback() {
             {index == 'overall' ? (
               <>
                 <Typography variant='h1'>Feedback {index}</Typography>
-                <Typography variant='body'>{comments}</Typography>
+                <Typography variant='body1'>{comments}</Typography>
               </>
             ) : (
               <>
