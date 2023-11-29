@@ -358,7 +358,7 @@ export default function Interview() {
           <Chip
             icon={
               <GraphicEqRoundedIcon
-                sx={{ '&.MuiChip-icon': { color: '#AF6161' } }}
+                sx={{ '&.MuiChip-icon': { color: '#AF6161 !important' } }}
               />
             }
             label='Please wait for the interviewer to finish speaking'
@@ -375,7 +375,7 @@ export default function Interview() {
           <Chip
             icon={
               <GraphicEqRoundedIcon
-                sx={{ '&.MuiChip-icon': { color: '#799D8C' } }}
+                sx={{ '&.MuiChip-icon': { color: '#799D8C !important' } }}
               />
             }
             label='You may answer the question now'
