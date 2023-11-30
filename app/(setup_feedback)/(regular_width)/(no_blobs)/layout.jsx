@@ -6,6 +6,7 @@ export default function RootLayout({ children }) {
       maxWidth={false}
       sx={{
         maxWidth: '65rem',
+        position: 'relative',
       }}
     >
       {children}
