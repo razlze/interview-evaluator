@@ -11,7 +11,7 @@ export default function RootLayout({ children }) {
           width: '100vw',
           backgroundColor: '#C8D5B9',
         }}
-      ></Box>
+      />
       <Image
         src={'blobs.svg'}
         width={40}

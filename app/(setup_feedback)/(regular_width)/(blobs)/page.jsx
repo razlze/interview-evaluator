@@ -20,7 +20,7 @@ function FeatureBox({ title, text, image }) {
           padding: '2rem',
         }}
       >
-        <Image src={image} width={70} height={70}></Image>
+        <Image src={image} width={70} height={70} />
         <Typography
           sx={{
             fontSize: '1.5rem',
@@ -51,7 +51,7 @@ export default async function Home() {
           borderRadius: '1.25rem',
           boxShadow: '0px 4px 33.5px 1px rgba(0, 0, 0, 0.25);',
         }}
-      ></Box>
+      />
       <Image
         src={'getStartedImage.svg'}
         style={{
@@ -63,57 +63,55 @@ export default async function Home() {
         }}
         width={40}
         height={40}
-      ></Image>
+      />
       <Box p={9} pt={4} sx={{ position: 'relative', zIndex: 2 }}>
-        <Box>
-          <Box sx={{ width: '60%' }}>
-            <Typography
-              sx={{
-                fontSize: '2.5rem',
-                fontWeight: 700,
-                color: 'primary.dark',
-              }}
-            >
-              Interview Evaluator
-            </Typography>
-            <Typography sx={{ fontSize: '1.25rem', color: 'primary.dark' }}>
-              Improve your interview skills with AI! Do a mock interview and get
-              helpful feedback!
-            </Typography>
-          </Box>
-          <Grid container spacing={3} sx={{ marginTop: '2rem' }}>
-            <FeatureBox
-              title='CUSTOMIZE'
-              text='Provide job details and add your own questions to tailor the interview to your needs'
-              image='customizeIcon.svg'
-            ></FeatureBox>
-            <FeatureBox
-              title='AI INTERVIEW'
-              text='Sit in a mock interview with our AI interviewer and answer questions tailored to you'
-              image='interviewIcon.svg'
-            ></FeatureBox>
-            <FeatureBox
-              title='FEEDBACK'
-              text='Read about your strengths and improvements for each of your interview answers to improve'
-              image='feedbackIcon.svg'
-            ></FeatureBox>
-          </Grid>
-          <Divider
+        <Box sx={{ width: '60%' }}>
+          <Typography
             sx={{
-              marginY: '2.5rem',
-              '&.MuiDivider-root::after, &.MuiDivider-root::before': {
-                borderTop: '2px solid rgba(53, 79, 82, 0.17)',
-              },
+              fontSize: '2.5rem',
+              fontWeight: 700,
+              color: 'primary.dark',
             }}
           >
-            <Typography
-              sx={{ color: 'primary.dark', fontWeight: 600, marginX: '1rem' }}
-            >
-              Enter your name to get started!
-            </Typography>
-          </Divider>
-          <UserDetailsForm />
+            Interview Evaluator
+          </Typography>
+          <Typography sx={{ fontSize: '1.25rem', color: 'primary.dark' }}>
+            Improve your interview skills with AI! Do a mock interview and get
+            helpful feedback!
+          </Typography>
         </Box>
+        <Grid container spacing={3} sx={{ marginTop: '2rem' }}>
+          <FeatureBox
+            title='CUSTOMIZE'
+            text='Provide job details and add your own questions to tailor the interview to your needs'
+            image='customizeIcon.svg'
+          ></FeatureBox>
+          <FeatureBox
+            title='AI INTERVIEW'
+            text='Sit in a mock interview with our AI interviewer and answer questions tailored to you'
+            image='interviewIcon.svg'
+          ></FeatureBox>
+          <FeatureBox
+            title='FEEDBACK'
+            text='Read about your strengths and improvements for each of your interview answers to improve'
+            image='feedbackIcon.svg'
+          ></FeatureBox>
+        </Grid>
+        <Divider
+          sx={{
+            marginY: '2.5rem',
+            '&.MuiDivider-root::after, &.MuiDivider-root::before': {
+              borderTop: '2px solid rgba(53, 79, 82, 0.17)',
+            },
+          }}
+        >
+          <Typography
+            sx={{ color: 'primary.dark', fontWeight: 600, marginX: '1rem' }}
+          >
+            Enter your name to get started!
+          </Typography>
+        </Divider>
+        <UserDetailsForm />
       </Box>
     </>
   );
