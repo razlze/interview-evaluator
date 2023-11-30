@@ -58,8 +58,8 @@ export default function QuestionForm() {
 
   const handleComplete = (e) => {
     e.preventDefault();
-    if (questionList.length == 0) {
-      setAlertText('Please have at least one question');
+    if (questionList.length < 3) {
+      setAlertText('Please have at least three questions');
     } else {
       setQuestions(questionList);
       router.push('/setup-overview');
