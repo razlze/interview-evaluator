@@ -27,7 +27,7 @@ import { useRouter } from 'next/navigation';
 export default function QuestionForm() {
   const [questions, setQuestions] = useContext(QuestionContext);
   const [questionList, setQuestionList] = useState(questions);
-  const [isAlertOpen, setIsAlertOpen] = useState(false);
+  const [alertText, setAlertText] = useState(false);
 
   const router = useRouter();
   const scrollRef = useRef(null);
@@ -37,14 +37,13 @@ export default function QuestionForm() {
       e.preventDefault();
       for (let i = 0; i < questionList.length; i++) {
         if (questionList[i].question == e.target.value) {
-          setIsAlertOpen(true);
+          setAlertText('You have already added this question');
           e.target.value = '';
-
           return;
         }
       }
 
-      setIsAlertOpen(false);
+      setAlertText(false);
       setQuestionList([
         ...questionList,
         { question: e.target.value, answer: '' },
@@ -59,8 +58,12 @@ export default function QuestionForm() {
 
   const handleComplete = (e) => {
     e.preventDefault();
-    setQuestions(questionList);
-    router.push('/setup-overview');
+    if (questionList.length == 0) {
+      setAlertText('Please have at least one question');
+    } else {
+      setQuestions(questionList);
+      router.push('/setup-overview');
+    }
   };
 
   const handleBack = (e) => {
@@ -101,7 +104,7 @@ export default function QuestionForm() {
         <Box
           width='90%'
           mt={-2}
-          height={isAlertOpen && questionList.length > 4 ? '20rem' : '18rem'}
+          height={alertText && questionList.length >= 4 ? '20rem' : '18rem'}
           sx={{ paddingTop: '20px' }}
         >
           <DragDropContext onDragEnd={onDragEnd}>
@@ -212,7 +215,7 @@ export default function QuestionForm() {
                 sx={{ pr: 2 }}
               />
             </Stack>
-            <Collapse in={isAlertOpen}>
+            <Collapse in={alertText}>
               <Alert
                 severity='error'
                 sx={{
@@ -226,14 +229,14 @@ export default function QuestionForm() {
                     color='inherit'
                     size='small'
                     onClick={() => {
-                      setIsAlertOpen(false);
+                      setAlertText(false);
                     }}
                   >
                     <CloseIcon fontSize='inherit' />
                   </IconButton>
                 }
               >
-                You have already added this question
+                {alertText}
               </Alert>
             </Collapse>
           </Box>
