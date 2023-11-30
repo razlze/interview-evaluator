@@ -1,6 +1,8 @@
 import OpenAI from 'openai';
 const openai = new OpenAI();
 
+export const runtime = 'edge';
+
 export async function POST(request) {
   const body = await request.json();
   const mp3 = await openai.audio.speech.create({
@@ -8,6 +10,7 @@ export async function POST(request) {
     voice: 'echo',
     input: body.text,
   });
+
   const audioData = await mp3.arrayBuffer();
 
   return new Response(audioData, {
