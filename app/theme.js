@@ -67,6 +67,10 @@ let theme = createTheme({
               color: 'white',
               backgroundColor: '#354F52',
             },
+            '&.Mui-disabled': {
+              color: '#354F524D',
+              border: '2px solid #354F524D',
+            },
           },
         },
         {
@@ -87,8 +91,10 @@ let theme = createTheme({
               color: '#354F52',
             },
             '&.Mui-disabled': {
-              color: '#354F524D',
-              border: '2px solid #354F524D',
+              opacity: '30%',
+              color: '#C8D5B9',
+              border: '2px solid #354F52',
+              backgroundColor: '#354F52',
             },
           },
         },

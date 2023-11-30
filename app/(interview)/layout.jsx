@@ -4,7 +4,7 @@ export default function InterviewLayout({ children }) {
   return (
     <Box
       sx={{
-        background: 'white',
+        background: '#F7F7F7',
       }}
       minHeight='100vh'
       display='flex'

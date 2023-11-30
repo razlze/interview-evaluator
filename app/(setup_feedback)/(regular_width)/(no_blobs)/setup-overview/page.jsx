@@ -1,5 +1,5 @@
 import { Box, Grid, Stack } from '@mui/material';
-import BoxWrapper from '../../../shared/BoxWrapper';
+import BoxWrapper from '../../../../shared/BoxWrapper';
 import TitleAndEdit from './TitleAndEdit';
 import JobInfoPair from './JobInfoPair';
 import InterviewQuestions from './InterviewQuestions';
@@ -23,7 +23,12 @@ export default async function Page() {
             paddingRight='1rem'
           >
             <TitleAndEdit title='Job Information' editPath='/job-info' />
-            <Box overflow='auto' maxHeight='15rem' paddingRight='1rem'>
+            <Box
+              overflow='auto'
+              maxHeight='15rem'
+              paddingRight='1rem'
+              className='feedbackScroll'
+            >
               <Stack gap={2}>
                 <JobInfoPair fieldName='Job Title' jobField='title' />
                 <JobInfoPair fieldName='Job Type' jobField='type' />

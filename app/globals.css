@@ -1,13 +1,14 @@
 body {
   margin: 0;
+  overflow: hidden;
 }
 
 /* Loading animation */
 .container {
   --uib-size: 60px;
-  --uib-color: #354F52;
+  --uib-color: #354f52;
   --uib-speed: 1.75s;
-  --uib-bg-opacity: .1;
+  --uib-bg-opacity: 0.1;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -178,7 +179,7 @@ body {
   border: 5px solid #354f52;
   cursor: default;
 }
-  
+
 .transition {
   height: auto !important;
 }

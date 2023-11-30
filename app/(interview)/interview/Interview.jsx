@@ -323,7 +323,7 @@ export default function Interview() {
             sx={{
               height: '100%',
               width: '100%',
-              bgcolor: '#DDDDDD',
+              bgcolor: '#E1E1E1',
               borderRadius: '1.25rem',
               display: 'flex',
               alignItems: 'center',

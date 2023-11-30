@@ -20,8 +20,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { useContext, useState, useRef, useEffect } from 'react';
-import { QuestionContext } from '../../../providers/QuestionProvider';
-import BoxWrapper from '../../../shared/BoxWrapper';
+import { QuestionContext } from '../../../../providers/QuestionProvider';
+import BoxWrapper from '../../../../shared/BoxWrapper';
 import { useRouter } from 'next/navigation';
 
 export default function QuestionForm() {
@@ -161,7 +161,7 @@ export default function QuestionForm() {
                             >
                               <DragIndicatorIcon htmlColor='#C8D5B9' />
                             </Box>
-                            <Typography variant='body1' width='92%'>
+                            <Typography variant='body1' py={1} width='92%'>
                               {item.question}
                             </Typography>
                             <IconButton
@@ -209,6 +209,7 @@ export default function QuestionForm() {
                 inputProps={{
                   'aria-label': 'Add a question',
                 }}
+                sx={{ pr: 2 }}
               />
             </Stack>
             <Collapse in={isAlertOpen}>
