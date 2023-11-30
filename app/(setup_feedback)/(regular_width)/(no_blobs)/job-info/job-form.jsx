@@ -43,6 +43,7 @@ export default function JobForm() {
               margin='normal'
               value={title}
               onChange={(e) => setTitle(e.target.value)}
+              sx={{ mb: 0.5 }}
             />
             <MultipleSelectChip jobType={type} setJobType={setType} />
             <TextField
@@ -51,15 +52,18 @@ export default function JobForm() {
               label='Company'
               value={company}
               onChange={(e) => setCompany(e.target.value)}
+              sx={{ mt: 1.5 }}
             />
           </Grid>
           <Grid item container xs={6} height='100%'>
             <TextField
+              inputProps={{ className: 'greyScroll' }}
               fullWidth
               label='Job Requirements'
               margin='normal'
               multiline
               minRows={8}
+              maxRows={8}
               value={reqs}
               onChange={(e) => setReqs(e.target.value)}
             />

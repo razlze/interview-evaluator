@@ -136,6 +136,16 @@ let theme = createTheme({
         },
       },
     },
+    MuiInput: {
+      styleOverrides: {
+        input: {
+          '&::placeholder': {
+            color: '#829E61',
+          },
+          color: '#5F6F4C',
+        },
+      },
+    },
   },
 });
 
