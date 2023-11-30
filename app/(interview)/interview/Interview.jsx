@@ -27,6 +27,7 @@ import WebCamera from './webcam';
 import { Player } from '@lottiefiles/react-lottie-player';
 import TextTransition from 'react-text-transition';
 import { useRouter } from 'next/navigation';
+import { useCompletion } from 'ai/react';
 import Image from 'next/image';
 
 export default function Interview() {
@@ -45,6 +46,13 @@ export default function Interview() {
   const interviewerPlayer = useRef(null);
   const speech = useRef(null);
   const ready = useRef(false);
+
+  const { complete } = useCompletion({
+    api: '/util/chatGPT',
+    onFinish: (prompt, completion) => {
+      textToSpeech(completion);
+    },
+  });
 
   const parseAudio = async (blob) => {
     const res = await fetch('/util/speechToText', {
@@ -65,41 +73,32 @@ export default function Interview() {
   };
 
   const askQuestion = async () => {
-    const fetchBase = '/util/chatGPT?queryType=';
-    let fetchURL = '';
     let requestBody = {};
 
     if (questionsAnswered == 0) {
-      fetchURL = fetchBase.concat('firstMessage');
       requestBody = {
+        queryType: 'firstMessage',
         jobTitle: jobInfo.title,
         question: questions[0].question,
       };
     } else if (questionsAnswered < questions.length) {
-      fetchURL = fetchBase.concat('subesequentMessage');
       requestBody = {
+        queryType: 'subsequentMessage',
         jobTitle: jobInfo.title,
         question: questions[questionsAnswered].question,
         prevQuestion: questions[questionsAnswered - 1].question,
         prevAnswer: questions[questionsAnswered - 1].answer,
       };
     } else {
-      fetchURL = fetchBase.concat('lastMessage');
       requestBody = {
+        queryType: 'lastMessage',
         jobTitle: jobInfo.title,
         prevQuestion: questions[questionsAnswered - 1].question,
         prevAnswer: questions[questionsAnswered - 1].answer,
       };
     }
 
-    const res = await fetch(fetchURL, {
-      method: 'POST',
-      body: JSON.stringify(requestBody),
-    });
-
-    const result = await res.json().then((res) => {
-      textToSpeech(res.res);
-    });
+    complete(requestBody);
   };
 
   const textToSpeech = async (input) => {

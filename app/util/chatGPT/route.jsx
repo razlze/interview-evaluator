@@ -1,7 +1,9 @@
 import OpenAI from 'openai';
-import { NextResponse } from 'next/server';
+import { OpenAIStream, StreamingTextResponse } from 'ai';
 
 const openai = new OpenAI();
+
+export const runtime = 'edge';
 
 const firstMessageContext =
   "You are an interviewer interviewing a candidate for the role of a *insert_job_here*. Speak only from the perspective of the interviewer. Do not include the time of day, or the interviewee's name. Welcome them to the interview and ask them the first question of: ";
@@ -62,14 +64,13 @@ a string.
 
 export async function POST(request) {
   const body = await request.json();
-  const searchParams = request.nextUrl.searchParams;
-  const queryType = searchParams.get('queryType');
+  const queryType = body.prompt.queryType;
 
   let context = [];
 
   if (queryType == 'firstMessage') {
-    const jobTitle = body.jobTitle;
-    const questionToAsk = body.question;
+    const jobTitle = body.prompt.jobTitle;
+    const questionToAsk = body.prompt.question;
 
     const systemContext = firstMessageContext
       .replace('*insert_job_here*', jobTitle)
@@ -79,11 +80,11 @@ export async function POST(request) {
       role: 'system',
       content: systemContext,
     });
-  } else if (queryType == 'subesequentMessage') {
-    const jobTitle = body.jobTitle;
-    const prevQuestion = body.prevQuestion;
-    const prevAnswer = body.prevAnswer;
-    const questionToAsk = body.question;
+  } else if (queryType == 'subsequentMessage') {
+    const jobTitle = body.prompt.jobTitle;
+    const prevQuestion = body.prompt.prevQuestion;
+    const prevAnswer = body.prompt.prevAnswer;
+    const questionToAsk = body.prompt.question;
 
     const systemContext = subsequentMessageContext
       .replace('*insert_job_here*', jobTitle)
@@ -104,9 +105,9 @@ export async function POST(request) {
       content: prevAnswer,
     });
   } else if (queryType == 'lastMessage') {
-    const jobTitle = body.jobTitle;
-    const prevQuestion = body.prevQuestion;
-    const prevAnswer = body.prevAnswer;
+    const jobTitle = body.prompt.jobTitle;
+    const prevQuestion = body.prompt.prevQuestion;
+    const prevAnswer = body.prompt.prevAnswer;
 
     const systemContext = lastMessageContext.replace(
       '*insert_job_here*',
@@ -128,12 +129,12 @@ export async function POST(request) {
       content: prevAnswer,
     });
   } else if (queryType == 'feedback') {
-    const question = body.question;
-    const answer = body.answer;
-    const jobTitle = body.title;
-    const jobType = body.type;
-    const jobCompany = body.company;
-    const jobReqs = body.reqs;
+    const question = body.prompt.question;
+    const answer = body.prompt.answer;
+    const jobTitle = body.prompt.title;
+    const jobType = body.prompt.type;
+    const jobCompany = body.prompt.company;
+    const jobReqs = body.prompt.reqs;
 
     const systemContext = feedbackContext
       .replace('*insert_question_here*', question)
@@ -148,11 +149,11 @@ export async function POST(request) {
       content: systemContext,
     });
   } else if (queryType == 'overall') {
-    const questions = body.questions;
-    const jobTitle = body.title;
-    const jobType = body.type;
-    const jobCompany = body.company;
-    const jobReqs = body.reqs;
+    const questions = body.prompt.questions;
+    const jobTitle = body.prompt.title;
+    const jobType = body.prompt.type;
+    const jobCompany = body.prompt.company;
+    const jobReqs = body.prompt.reqs;
 
     const systemContext = overallFeedbackContext
       .replace('*insert_questions_here*', questions)
@@ -170,9 +171,10 @@ export async function POST(request) {
   const completion = await openai.chat.completions.create({
     messages: context,
     model: 'gpt-3.5-turbo',
+    stream: true,
   });
 
-  const res = completion.choices[0].message.content;
+  const stream = OpenAIStream(completion);
 
-  return NextResponse.json({ res });
+  return new StreamingTextResponse(stream);
 }
