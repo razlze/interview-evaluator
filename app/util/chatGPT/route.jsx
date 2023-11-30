@@ -80,7 +80,7 @@ export async function POST(request) {
       role: 'system',
       content: systemContext,
     });
-  } else if (queryType == 'subesequentMessage') {
+  } else if (queryType == 'subsequentMessage') {
     const jobTitle = body.prompt.jobTitle;
     const prevQuestion = body.prompt.prevQuestion;
     const prevAnswer = body.prompt.prevAnswer;
