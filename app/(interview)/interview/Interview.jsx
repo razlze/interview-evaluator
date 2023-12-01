@@ -80,6 +80,7 @@ export default function Interview() {
         queryType: 'firstMessage',
         jobTitle: jobInfo.title,
         jobCompany: jobInfo.company,
+        name: userDetails.name,
         question: questions[0].question,
       };
     } else if (questionsAnswered < questions.length) {
@@ -87,6 +88,7 @@ export default function Interview() {
         queryType: 'subsequentMessage',
         jobTitle: jobInfo.title,
         jobCompany: jobInfo.company,
+        name: userDetails.name,
         question: questions[questionsAnswered].question,
         prevQuestion: questions[questionsAnswered - 1].question,
         prevAnswer: questions[questionsAnswered - 1].answer,
@@ -96,6 +98,7 @@ export default function Interview() {
         queryType: 'lastMessage',
         jobTitle: jobInfo.title,
         jobCompany: jobInfo.company,
+        name: userDetails.name,
         prevQuestion: questions[questionsAnswered - 1].question,
         prevAnswer: questions[questionsAnswered - 1].answer,
       };
