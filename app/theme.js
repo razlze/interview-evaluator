@@ -120,6 +120,28 @@ let theme = createTheme({
             },
           },
         },
+        {
+          props: { variant: 'gradiant' },
+          style: {
+            borderRadius: '.5rem',
+            padding: '.5rem 1.5rem',
+            color: '#272D2D',
+            fontWeight: '600',
+            fontSize: '1rem',
+            background:
+              'linear-gradient(93deg, #C8D5B9 5.07%, #8FC0A9 155.78%)',
+            boxShadow: '0px 4px 8.2px 0px rgba(200, 213, 185, 0.50)',
+            textTransform: 'none',
+            '&:hover': {
+              boxShadow: '0px 4px 8.2px 0px rgba(200, 213, 185, 0.90)',
+              color: 'white',
+            },
+            '&.Mui-disabled': {
+              opacity: 0.8,
+              color: '#272D2D',
+            },
+          },
+        },
       ],
       styleOverrides: {
         iconSizeMedium: {

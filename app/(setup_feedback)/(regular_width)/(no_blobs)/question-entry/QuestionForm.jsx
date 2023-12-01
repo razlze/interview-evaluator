@@ -9,6 +9,7 @@ import {
   Input,
   Stack,
   Typography,
+  CircularProgress,
 } from '@mui/material';
 import DragIndicatorIcon from '@mui/icons-material/DragIndicator';
 import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
@@ -16,16 +17,20 @@ import AddBoxRoundedIcon from '@mui/icons-material/AddBoxRounded';
 import ArrowBackward from '@mui/icons-material/ChevronLeftRounded';
 import CheckRoundedIcon from '@mui/icons-material/CheckRounded';
 import CloseIcon from '@mui/icons-material/Close';
+import AutoAwesomeRoundedIcon from '@mui/icons-material/AutoAwesomeRounded';
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import { useContext, useState, useRef, useEffect } from 'react';
 import { QuestionContext } from '../../../../providers/QuestionProvider';
+import { JobContext } from '../../../../providers/JobProvider';
 import BoxWrapper from '../../../../shared/BoxWrapper';
 import { useRouter } from 'next/navigation';
+import { useCompletion } from 'ai/react';
 
 export default function QuestionForm() {
   const [questions, setQuestions] = useContext(QuestionContext);
+  const [jobInfo] = useContext(JobContext);
   const [questionList, setQuestionList] = useState(questions);
   const [alertText, setAlertText] = useState(false);
 
@@ -46,7 +51,7 @@ export default function QuestionForm() {
       setAlertText(false);
       setQuestionList([
         ...questionList,
-        { question: e.target.value, answer: '' },
+        { question: e.target.value, answer: '', isAI: false },
       ]);
       e.target.value = '';
     }
@@ -94,6 +99,32 @@ export default function QuestionForm() {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
     }
   });
+
+  const { complete, completion, isLoading } = useCompletion({
+    api: '/util/chatGPT',
+  });
+
+  const generateQuestion = async () => {
+    const requestBody = {
+      queryType: 'generateQuestion',
+      questions: questionList.map((q) => q.question),
+      ...jobInfo,
+    };
+
+    complete(requestBody);
+    setQuestionList([
+      ...questionList,
+      { question: '', answer: '', isAI: true },
+    ]);
+  };
+
+  useEffect(() => {
+    if (isLoading) {
+      let newList = questionList;
+      newList[questionList.length - 1].question = completion;
+      setQuestionList[newList];
+    }
+  }, [completion]);
 
   return (
     <Box component='form' onSubmit={handleComplete}>
@@ -148,7 +179,6 @@ export default function QuestionForm() {
                               bgcolor: snapshot.isDragging
                                 ? '#F1F8E9'
                                 : 'white',
-                              justifyContent: 'space-between',
                               mb: 1.5,
                               mx: 3,
                               boxShadow: snapshot.isDragging
@@ -164,9 +194,34 @@ export default function QuestionForm() {
                             >
                               <DragIndicatorIcon htmlColor='#C8D5B9' />
                             </Box>
-                            <Typography variant='body1' py={1} width='92%'>
+                            <Typography
+                              variant='body1'
+                              py={1}
+                              sx={{ flexGrow: 1 }}
+                            >
                               {item.question}
                             </Typography>
+                            {item.isAI && (
+                              <Box
+                                sx={{
+                                  backgroundColor: '#F1F8E9',
+                                  borderRadius: '0.2rem',
+                                  padding: '4px',
+                                  display: 'flex',
+                                  justifyContent: 'center',
+                                  alignItems: 'center',
+                                  marginRight: -1,
+                                  marginLeft: 1,
+                                }}
+                              >
+                                <AutoAwesomeRoundedIcon
+                                  sx={{
+                                    color: '#C8D5B9',
+                                    fontSize: '1rem',
+                                  }}
+                                />
+                              </Box>
+                            )}
                             <IconButton
                               aria-label='delete'
                               onClick={() => deleteQuestion(index)}
@@ -184,37 +239,65 @@ export default function QuestionForm() {
             </Droppable>
           </DragDropContext>
           <Box px={3} mr={questionList.length > 4 ? 1 : 0}>
-            <Stack
-              direction='row'
-              width='100%'
+            <Box
               sx={{
-                borderStyle: 'solid',
-                borderWidth: '1px',
-                borderColor: 'primary.light',
-                borderRadius: 2,
                 display: 'flex',
+                flexDirection: 'row',
                 alignItems: 'center',
-                bgcolor: '#F1F8E9',
                 mb: 1.5,
-                fontSize: '2rem',
+                gap: 1.5,
               }}
             >
-              <AddBoxRoundedIcon
-                htmlColor='#C8D5B9'
-                fontSize='inherit'
-                sx={{ margin: 0.7 }}
-              />
-              <Input
-                placeholder='Type out a question and press "Enter" to add it to your interview!'
-                disableUnderline={true}
-                fullWidth
-                onKeyDown={addQuestion}
-                inputProps={{
-                  'aria-label': 'Add a question',
+              <Stack
+                direction='row'
+                sx={{
+                  borderStyle: 'solid',
+                  borderWidth: '1px',
+                  borderColor: 'primary.light',
+                  borderRadius: 2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  bgcolor: '#F1F8E9',
+                  fontSize: '2rem',
+                  flexGrow: 1,
                 }}
-                sx={{ pr: 2 }}
-              />
-            </Stack>
+              >
+                <AddBoxRoundedIcon
+                  htmlColor='#C8D5B9'
+                  fontSize='inherit'
+                  sx={{ margin: 0.7 }}
+                />
+                <Input
+                  placeholder='Type a question and press "Enter"'
+                  disableUnderline={true}
+                  fullWidth
+                  onKeyDown={addQuestion}
+                  inputProps={{
+                    'aria-label': 'Add a question',
+                  }}
+                  sx={{ pr: 2 }}
+                  disabled={isLoading}
+                />
+              </Stack>
+              <Button
+                variant='gradiant'
+                startIcon={
+                  isLoading ? (
+                    <CircularProgress
+                      size={'1.3rem'}
+                      sx={{ color: '#272D2D' }}
+                      thickness={5}
+                    />
+                  ) : (
+                    <AutoAwesomeRoundedIcon />
+                  )
+                }
+                disabled={isLoading}
+                onClick={generateQuestion}
+              >
+                Surprise Me
+              </Button>
+            </Box>
             <Collapse in={alertText}>
               <Alert
                 severity='error'
