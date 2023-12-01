@@ -40,6 +40,15 @@ export default function QuestionForm() {
   const addQuestion = (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
+
+      if (!e.target.value.replace(/\s/g, '').length) {
+        setAlertText(
+          'Question is invalid. Please type out a question and press "Enter" '
+        );
+        e.target.value = '';
+        return;
+      }
+
       for (let i = 0; i < questionList.length; i++) {
         if (questionList[i].question == e.target.value) {
           setAlertText('You have already added this question');
