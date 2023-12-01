@@ -62,6 +62,15 @@ Please limit the feedback to 150 words and do not repeat the question or the ans
 a string.
 `;
 
+const generateQuestionsContext = `
+Your role is to generate an interview question for a candidate doing an interview. 
+For context, the candidate is applying for the position *insert_title_here* at the company *insert_company_here*. The type of positions they are applying for 
+are the following: *insert_type_here*. The requirements for this job are the following: "*insert_reqs_here*".
+The questions the candidate is already being asked is provided in an array here: *insert_questions_here*
+Make sure that the question you generate is not a repeat of any of the questions that are already being asked.
+Please limit the question to one sentence. The question should be directed to the candidate in second person. Your answer should be in the format of a string.
+`;
+
 export async function POST(request) {
   const body = await request.json();
   const queryType = body.prompt.queryType;
@@ -166,6 +175,21 @@ export async function POST(request) {
       role: 'system',
       content: systemContext,
     });
+  } else if (queryType == 'generateQuestion') {
+    const questions = body.prompt.questions;
+    const jobTitle = body.prompt.title;
+    const jobType = body.prompt.type;
+    const jobCompany = body.prompt.company;
+    const jobReqs = body.prompt.reqs;
+
+    const systemContext = generateQuestionsContext
+      .replace('*insert_questions_here*', questions)
+      .replace('*insert_title_here*', jobTitle)
+      .replace('*insert_type_here*', jobType.join(', '))
+      .replace('*insert_company_here*', jobCompany)
+      .replace('*insert_reqs_here*', jobReqs);
+
+    context.push({ role: 'system', content: systemContext });
   }
 
   const completion = await openai.chat.completions.create({
