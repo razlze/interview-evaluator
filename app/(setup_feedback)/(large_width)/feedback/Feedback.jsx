@@ -104,7 +104,8 @@ export default function Feedback() {
                 bgcolor='secondary.light'
                 borderRadius='.5rem'
                 paddingY='2rem'
-                paddingX='2.5rem'
+                paddingRight='2rem'
+                paddingLeft='2.5rem'
                 height='45vh'
               >
                 <Typography variant='h3'>Overall Performance</Typography>
@@ -116,7 +117,12 @@ export default function Feedback() {
                   bgcolor='primary.main'
                   borderRadius={1}
                 />
-                <Box overflow='auto'>
+                <Box
+                  overflow='auto'
+                  maxHeight='19rem'
+                  paddingRight='.5rem'
+                  className='feedbackScroll'
+                >
                   <Typography>{feedback.overall}</Typography>
                 </Box>
               </Grid>
