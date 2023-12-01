@@ -20,7 +20,7 @@ function FeatureBox({ title, text, image }) {
           padding: '2rem',
         }}
       >
-        <Image src={image} width={70} height={70} />
+        <Image src={image} alt='icon' width={70} height={70} />
         <Typography
           sx={{
             fontSize: '1.5rem',
@@ -54,6 +54,7 @@ export default async function Home() {
       />
       <Image
         src={'getStartedImage.svg'}
+        alt='Get Started'
         style={{
           position: 'absolute',
           width: '31rem',

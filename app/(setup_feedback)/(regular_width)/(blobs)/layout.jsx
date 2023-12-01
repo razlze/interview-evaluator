@@ -15,6 +15,7 @@ export default function RootLayout({ children }) {
       <Image
         src={'blobs.svg'}
         width={40}
+        alt='blobs'
         height={40}
         style={{
           position: 'absolute',
