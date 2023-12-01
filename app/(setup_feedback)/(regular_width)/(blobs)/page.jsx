@@ -1,11 +1,4 @@
-import {
-  Typography,
-  Box,
-  Grid,
-  Divider,
-  TextField,
-  Button,
-} from '@mui/material';
+import { Typography, Box, Grid, Divider } from '@mui/material';
 import Image from 'next/image';
 import UserDetailsForm from './UserDetailsForm';
 
@@ -74,7 +67,7 @@ export default async function Home() {
               color: 'primary.dark',
             }}
           >
-            Interview Evaluator
+            AI Interviewer
           </Typography>
           <Typography sx={{ fontSize: '1.25rem', color: 'primary.dark' }}>
             Improve your interview skills with AI! Do a mock interview and get
@@ -88,7 +81,7 @@ export default async function Home() {
             image='customizeIcon.svg'
           ></FeatureBox>
           <FeatureBox
-            title='AI INTERVIEW'
+            title='INTERVIEW'
             text='Sit in a mock interview with our AI interviewer and answer questions tailored to you'
             image='interviewIcon.svg'
           ></FeatureBox>
