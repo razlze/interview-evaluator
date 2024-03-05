@@ -51,6 +51,7 @@ export default function Interview() {
     api: '/util/chatGPT',
     onFinish: (prompt, completion) => {
       textToSpeech(completion);
+      console.log(completion);
     },
   });
 
