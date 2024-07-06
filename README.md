@@ -1,6 +1,6 @@
 # Practice Your Interview Skills with AI Interviewer
 
-Check out the app [here]([https://youtu.be/IhgPMYOuMS4?si=hTZ6yYtVgR4W5OUo&t=28](https://interview-evaluator.vercel.app/))
+Check out the app [here](https://interview-evaluator.vercel.app/)
 
 AI Interviewer uses AI and NLP to simulate a real-life interview experience for job applicants.
 Designed to improve one's interview skills, it provides insightful feedback after the interview session for every question asked in the interview.
