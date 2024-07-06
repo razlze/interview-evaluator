@@ -1,36 +1,32 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Practice Your Interview Skills with AI Interviewer
 
-## Getting Started
+Check out the app [here]([https://youtu.be/IhgPMYOuMS4?si=hTZ6yYtVgR4W5OUo&t=28](https://interview-evaluator.vercel.app/))
 
-First, run the development server:
+AI Interviewer uses AI and NLP to simulate a real-life interview experience for job applicants.
+Designed to improve one's interview skills, it provides insightful feedback after the interview session for every question asked in the interview.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## 😎 Features
+* Customizable interview questions + question generation with AI
+* Quick setup to tailor the interview experience to the job and company you want to practice for
+* A 2D character that interacts with you throughout the interview session as your interviewer
+* Detailed analysis of your strengths and weaknesses for each question you answered
+
+## 🥇 Second Place at Hackathon
+
+Was submitted to Equitable Elevation IV Hackathon and won Second Place overall! Find out more [here](https://devpost.com/software/ai-interviewer)
+
+## 📝 Technologies Used
+
+<img src="https://www.datocms-assets.com/98835/1684410508-image-7.png" width="100px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://seeklogo.com/images/M/material-ui-logo-5BDCB9BA8F-seeklogo.com.png" width="100px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://static.vecteezy.com/system/resources/previews/022/227/364/non_2x/openai-chatgpt-logo-icon-free-png.png" width="100px" />&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://assets.vercel.com/image/upload/front/favicon/vercel/180x180.png" width="100px" />
+
+## 🍎 Get It Started
+
+Install the dependencies using npm
+```shell
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Start the local development server
+```shell
+npm start
+```
