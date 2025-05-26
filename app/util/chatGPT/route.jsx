@@ -68,7 +68,8 @@ For context, the candidate is applying for the position *insert_title_here* at t
 are the following: *insert_type_here*. The requirements for this job are the following: "*insert_reqs_here*".
 The questions the candidate is already being asked is provided in an array here: *insert_questions_here*
 Make sure that the question you generate is not a repeat of any of the questions that are already being asked.
-Please limit the question to one sentence. The question should be directed to the candidate in second person. Your answer should be in the format of a string.
+Please limit the question to one sentence. The question should be directed to the candidate in second person. The question should be in the format of a string with no quotation marks around it.
+Do NOT answer the question yourself. You are only the interviewer asking the question. 
 `;
 
 export async function POST(request) {
